@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% if request.user.is_authenticated %}
+    <h4 class="alert alert-secondoery">
+      أهلا وسهلاً {{request.user.username}} ، لقد قمت بتسجيل الدخول.
+      <a class="text-dark" href="{% url 'index' %}"
+        ><br />
+        الذهاب الى <span class="color-b">الصفحة الرئيسية</span></a
+      >
+    </h4>
+
+    {% else %}
+    <form method="POST">
+      {% csrf_token %} {% for msg in messages %}
+      <div
+        class="alert {% if msg.tags == 'error' %}alert-danger{% elif msg.tags == 'success' %}alert-success{% else %}alert-warning{% endif %} alert-dismissible fade show"
+        role="alert">
+        <strong>اهلاً، </strong>{{ msg }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="close"></button>
+      </div>
+      {% endfor %}
+      <div>
+        <label>اسم المستخدم</label>
+        <input type="text" name="username" />
+      </div>
+      <div>
+        <label>كلمة السر</label>
+        <input type="password" name="pass" />
+      </div>
+      <div>
+        <button type="submit" name="btnlogin">تسجيل دخول</button>
+        <a href="{% url 'userdata' %}">ليس لدي حساب</a>
+      </div>
+    </form>
+    {% endif %}
+  </body>
+</html>

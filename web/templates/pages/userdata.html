@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      {% for msg in messages %}
+      <div
+        class="alert {% if msg.tags == 'error' %}alert-danger{% elif msg.tags == 'success' %}alert-success{% else %}alert-warning{% endif %} alert-dismissible fade show"
+        role="alert">
+        <strong>اهلاً، </strong>{{ msg }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="close"></button>
+      </div>
+      {% endfor %}
+      <div>
+        <label>اسم المستخدم</label>
+        <input type="text" name="username" />
+      </div>
+      <div>
+      <div>
+        <label>الايميل</label>
+        <input type="email" name="usermail" />
+      </div>
+      <div>
+        <label>كلمة المرور</label>
+        <input type="password" name="pass" />
+      </div>
+      <button type="submit" name="btncreate">انشاء حساب</button>
+      <a href="{% url 'login' %}">لدي حساب بالفعل!</a>
+    </form>
+  </body>
+</html>

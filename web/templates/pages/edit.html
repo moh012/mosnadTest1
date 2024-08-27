@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=`, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <h1>تعديل المنتج</h1>
+      <label>تعليق</label>
+      <input type="text" name="comment" />
+      <br />
+      <label>التقييم</label>
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <button type="submit">اضافة</button>
+    </form>
+  </body>
+</html>
